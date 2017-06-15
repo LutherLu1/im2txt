@@ -1,3 +1,6 @@
+NOTE: This is essentially a forked branch from im2txt based on tensorflow.
+Use tensorflow r0.12
+
 # TensorFlow Models
 
 This repository contains machine learning models implemented in
