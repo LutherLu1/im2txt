@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import heapq
 import math
-
+import sys
 
 import numpy as np
 
@@ -124,7 +124,7 @@ class CaptionGenerator(object):
     self.vocab = vocab
     self.model = model
 
-    self.beam_size = beam_size
+    self.beam_size =int(beam_size) 
     self.max_caption_length = max_caption_length
     self.length_normalization_factor = length_normalization_factor
 
@@ -167,7 +167,10 @@ class CaptionGenerator(object):
         state = new_states[i]
         # For this partial caption, get the beam_size most probable next words.
         words_and_probs = list(enumerate(word_probabilities))
+        #np.savetxt('log.txt', np.asarray(words_and_probs), delimiter=',')
+        #print(sys.version)
         words_and_probs.sort(key=lambda x: -x[1])
+        #self.beam_size  = int(self.beam_size)
         words_and_probs = words_and_probs[0:self.beam_size]
         # Each next word gives a new partial caption.
         for w, p in words_and_probs:
