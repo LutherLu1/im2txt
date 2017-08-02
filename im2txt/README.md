@@ -273,14 +273,13 @@ You can further improve the performance of the model by running a
 second training phase to jointly fine-tune the parameters of the *Inception v3*
 image submodel and the LSTM.
 
-```shell
-# Restart the training script with --train_inception=true.
-bazel-bin/im2txt/train \
-  --input_file_pattern="${MSCOCO_DIR}/train-?????-of-00256" \
-  --train_dir="${MODEL_DIR}/train" \
-  --train_inception=true \
-  --number_of_steps=3000000  # Additional 2M steps (assuming 1M in initial training).
 ```
+bazel-bin/im2txt/run_inference
+--checkpoint_path=./trained_model/model.ckpt-2000000
+--vocab_file=./trained_model/vocab_file.txt
+--num_captions=${NUM_CAPTIONS}
+--beam_size=${BEAM_SIZE}
+--input_files=${PATH_TO_IMAGE}```
 
 Note that training will proceed much slower now, and the model will continue to
 improve by a small amount for a long time. We have found that it will improve
